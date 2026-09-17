@@ -9,9 +9,9 @@ trap 'rm -rf "$TMP"' EXIT
 
 FAKE="$TMP/oops.env"
 cat > "$FAKE" <<'EOF'
-# Documented AWS example credentials — not real, still a scanner hit.
-AWS_ACCESS_KEY_ID=AKIAIOSFODNN7EXAMPLE
-AWS_SECRET_ACCESS_KEY=wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
+# Documented fake AWS-style credentials — not real, still a scanner hit.
+# Official AWS "...EXAMPLE" placeholders are allowlisted by Gitleaks.
+AWS_ACCESS_KEY_ID=AKIALALEMEL33243OLIB
 EOF
 
 echo "Wrote a temporary fake secret at $FAKE"
@@ -24,8 +24,14 @@ run_gitleaks() {
     return $?
   fi
   if command -v docker >/dev/null 2>&1; then
-    docker run --rm -v "$TMP":/scan zricethezav/gitleaks:v8.28.0 detect --no-git --source /scan --verbose
-    return $?
+    if docker info >/dev/null 2>&1; then
+      docker run --rm -v "$TMP":/scan zricethezav/gitleaks:v8.28.0 detect --no-git --source /scan --verbose
+      return $?
+    fi
+    echo "Docker CLI is installed, but the daemon is not running."
+    echo "Start Docker Desktop, or install a local scanner:"
+    echo "  brew install gitleaks"
+    return 2
   fi
   echo "Neither gitleaks nor docker is installed."
   echo "Install one of:"
@@ -49,6 +55,6 @@ elif [[ "$STATUS" -eq 0 ]]; then
   echo "Scanner reported clean. Unexpected for this fixture."
   exit 1
 else
-  echo "Could not run the scanner (missing binary)."
+  echo "Could not run the scanner."
   exit "$STATUS"
 fi

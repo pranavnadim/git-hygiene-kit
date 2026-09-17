@@ -66,7 +66,13 @@ From then on, `git commit` runs Gitleaks on the staged diff. A lookalike AWS key
 bash demo/simulate_leak.sh
 ```
 
-That script writes a temporary file with a *documented fake* AWS example key, runs the scanner against it, then deletes the file. You should see a finding. The repo stays clean.
+That script writes a temporary file with a *documented fake* AWS-style key, runs the scanner against it, then deletes the file. You should see a finding. The repo stays clean.
+
+Needs a local `gitleaks` binary or a running Docker daemon. If Docker Desktop is installed but stopped, install the binary instead:
+
+```bash
+brew install gitleaks
+```
 
 ## Notebook / data-engineer extras
 

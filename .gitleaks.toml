@@ -12,4 +12,5 @@ paths = [
 regexes = [
   '''AKIAIOSFODNN7EXAMPLE''',
   '''wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY''',
+  '''AKIALALEMEL33243OLIB''',
 ]
