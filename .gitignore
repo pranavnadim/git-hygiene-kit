@@ -1,0 +1,30 @@
+# secrets and local credentials
+.env
+.env.*
+!.env.example
+credentials.json
+*.pem
+*.p12
+*.key
+id_rsa
+id_rsa.pub
+secrets.yaml
+secrets.yml
+service-account*.json
+
+# notebooks / data-eng clutter
+.ipynb_checkpoints/
+.pytest_cache/
+__pycache__/
+*.pyc
+.mypy_cache/
+.ruff_cache/
+dask-worker-space/
+.venv/
+venv/
+.envrc
+
+# os / editor
+.DS_Store
+.idea/
+.vscode/

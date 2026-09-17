@@ -1,0 +1,15 @@
+# Narrow allowlist for this kit only.
+# Do not globally allowlist real credential patterns.
+
+title = "git-hygiene-kit"
+
+[allowlist]
+description = "Documented fake / example strings used in demos and docs"
+paths = [
+  '''demo/fixtures/''',
+  '''README.md''',
+]
+regexes = [
+  '''AKIAIOSFODNN7EXAMPLE''',
+  '''wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY''',
+]

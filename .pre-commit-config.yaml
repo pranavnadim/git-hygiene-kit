@@ -1,0 +1,7 @@
+# Local first line of defense. Install with: pre-commit install
+# Bypass exists: git commit --no-verify — that is why CI still scans.
+repos:
+  - repo: https://github.com/gitleaks/gitleaks
+    rev: v8.28.0
+    hooks:
+      - id: gitleaks
